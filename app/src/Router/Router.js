@@ -12,7 +12,7 @@ class Router  extends Component{
         {/* 导航 */}
         {/* 路由 */}
         <Switch>
-          <Redirect from='/' to='login' exact></Redirect>
+          <Redirect from='/' to='admin' exact></Redirect>
           <Route path='/login' component={Login}></Route>
           <Route path='/admin' render={()=>{
             return(
