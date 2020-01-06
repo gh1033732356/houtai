@@ -1,5 +1,14 @@
 import axios from 'axios'
+import {getItem} from './webStorage'
 axios.interceptors.request.use(function (config) {
+    if(getItem('token')){
+      if(config.data){
+        config.data.token = getItem('token')
+      }else{
+        config.data = {}
+        config.data.token = getItem('token')
+      }
+    }
     return config;
   }, function (error) {
     return Promise.reject(error);
