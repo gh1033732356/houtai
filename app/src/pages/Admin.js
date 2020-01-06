@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Breadcrumb } from 'antd';
-import Nav from '../component/Nav'
+import CustomNav from '../component/CustomNav'
 const { Header, Content, Footer, Sider } = Layout;
 // const { SubMenu } = Menu;
 
@@ -22,7 +22,7 @@ class Admin extends React.Component{
         {/* 侧边栏 */}
               <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
                 <div className="logo" />
-                <Nav></Nav>
+                <CustomNav></CustomNav>
               </Sider>
               
               <Layout>
