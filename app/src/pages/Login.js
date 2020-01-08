@@ -21,6 +21,7 @@ class Login extends Component {
 // 发起网络请求
        UserLogin(data.userName,data.passWord)
        .then((res)=>{
+         console.log(res.token)
          setItem('token',res.token)
          setItem('uid',res.uid)
          setItem('roots',res)
