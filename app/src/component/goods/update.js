@@ -8,9 +8,11 @@ class foodUpdate extends Component{
     super()
     //接收到默认的props里面传过来的要修改的数据值赋给state
     this.state=props.updateData
+
     }
     componentWillReceiveProps(props,state){  // 监听props值修改
       let {_id,name,foodType,price,desc,img} = props.updateData
+      
       this.setState({_id,name,foodType,price,desc,img}) //props改变的时候修改数据
     }
     upload=()=>{
@@ -33,6 +35,9 @@ class foodUpdate extends Component{
         message.success('修改成功！',0.2,()=>{
           this.props.closeDrawer() //调用props中的关闭抽屉的方法
         })
+
+        // console.log('p',this.props.getTableData);
+        this.props.getTableData(this.props.nowPage,this.props.pageSize)
       })
       .catch(()=>{
         message.error('图片格式不正确！')

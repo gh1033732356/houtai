@@ -123,7 +123,7 @@ class List extends Component{
     .then((res)=>{
       console.log(res);
       let {foods,allCount} = res.list
-      this.setState({spinning:false,data:foods,total:allCount})
+      this.setState({spinning:false,data:foods,total:allCount,nowPage,pageSize})
     })
   }
 //全部
@@ -164,9 +164,9 @@ all(){
  //数据
  closeDrawer=()=>{
     // 1.关闭抽屉
-    // 2.更新数据
+    // 2.更新数据 
     this.setState({drawerState:false})
-    this.getTableData(this.nowPage,this.pageSize)
+    // this.getTableData(this.nowPage,this.pageSize)
  }
   render(){
     let {columns,spinning,updateData,data,total,nowPage,pageSize,foodType,kw} = this.state
@@ -214,6 +214,7 @@ all(){
             default:
               break;
           }
+          this.setState({nowPage,pageSize})
         }}/>
         {/* 抽屉  */}
         <Drawer className={style.uDrawer}
@@ -225,7 +226,7 @@ all(){
           visible={this.state.drawerState}
         >
          {/* props传参的方式将要修改的顺序传给组件 */}
-          <Update  closeDrawer={this.closeDrawer} updateData={updateData} className={style.update}></Update>
+          <Update  closeDrawer={this.closeDrawer} updateData={updateData} getTableData={this.getTableData.bind(this)}  nowPage={nowPage} pageSize={pageSize} className={style.update}></Update>
         </Drawer>
       </div>
     )
