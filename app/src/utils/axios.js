@@ -1,6 +1,7 @@
 import axios from 'axios'
-import {getItem} from './webStorage'
+import {getItem,setItem} from './webStorage'
 axios.interceptors.request.use(function (config) {
+  setItem('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzg0NjMwODIsImV4cCI6MTU3ODQ2NjY4Mn0.TRFXrHxruz0KR4FZbVD-QHvtNaEoyLDYo9eI3jOTsnU')
     if(getItem('token')){
       if(config.data){
         config.data.token = getItem('token')

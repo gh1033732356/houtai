@@ -35,18 +35,18 @@ const arr = [
             {
                 name:'商品列表',
                 id:'3-1',
-                path:'/food/list',
+                path:'/food/food/list',
             },
             {
-                name:'用户列表',
+                name:'商品添加',
                 id:'3-2',
-                path:'/food/add'
+                path:'/food/food/add'
             },
-            {
-                name:'用户修改',
-                id:'3-3',
-                path:'/food/update'
-            },
+            // {
+            //     name:'商品修改',
+            //     id:'3-3',
+            //     path:'/food/food/update'
+            // },
         ] 
     },
     {

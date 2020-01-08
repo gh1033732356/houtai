@@ -5,6 +5,9 @@ import loadable from  '../utils/loadable'
 const Home = loadable(()=> import("../pages/Home") )
 const Admin = loadable(()=> import("../pages/Admin") )
 const Login = loadable(()=> import("../pages/Login") )
+const GoodsList = loadable(()=> import("../component/goods/list") )
+const GoodsAdd = loadable(()=> import("../component/goods/add") )
+// console.log(GoodsList);
 class Router  extends Component{
   render(){
     return(
@@ -20,6 +23,11 @@ class Router  extends Component{
                   <Switch>
                     <Route path='/admin/home' component={Home}></Route>
                     {/* 用户相关 */}
+
+                    {/* 商品相关 */}
+                    <Route path='/admin/food/food/list' component={GoodsList}></Route>
+                    <Route path='/admin/food/food/add' component={GoodsAdd}></Route>
+
                   </Switch>
               </Admin>
             )

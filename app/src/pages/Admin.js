@@ -34,7 +34,10 @@ class Admin extends React.Component{
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                   </Breadcrumb>
-                  <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
+                  
+                  <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                  {this.props.children}
+                  </div>
                 </Content>
                 {/* 尾部 */}
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
