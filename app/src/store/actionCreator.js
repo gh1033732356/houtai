@@ -15,6 +15,13 @@ export default {
     }
     return action  // 改为return
   },
+  UserKey(params){
+    const action = {
+        type : types.USER_SZ,
+        params : params
+    }
+    return action  // 改为return
+  },
   TokenShowModel(params){
     const action = {
         type : types.TOKEN_SHOW,

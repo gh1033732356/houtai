@@ -2,8 +2,9 @@ import React,{Component} from 'react';
 import { Form, Icon, Input, Button, Card,message } from 'antd';
 import types from '../less/Login.module.less'
 import {UserLogin} from '../api/user'
-import {withRouter} from 'react-router-dom'
+import {withRouter,Link} from 'react-router-dom'
 import { setItem, getItem } from '../utils/webStorage';
+// import Register from './Register'
 class Login extends Component {
   componentDidMount(){
     if(getItem('token')){
@@ -67,9 +68,11 @@ class Login extends Component {
         </Form.Item>
         <Form.Item>
           <Button type="primary" onClick={this.login} className={types.login_form_button}>
-            登    陆
+            登    陆  
           </Button>
         </Form.Item>
+        {/* <Register></Register> */}
+        <Link to='/reg'>还没有账号？去注册</Link>
       </div>
       </Card>
     );

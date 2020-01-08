@@ -13,6 +13,9 @@ export default (prevState=state,actions)=>{
      case types.TOKEN_SHOW:
         newData.TokenShow=params
        break;
+     case types.USER_SZ:
+        newData.UserKeys=params
+       break;
      default:
        break;
    }

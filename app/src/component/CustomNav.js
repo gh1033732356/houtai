@@ -1,13 +1,19 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import {Link} from 'react-router-dom'
+import {Link,withRouter} from 'react-router-dom'
 import {Rootlist} from '../root/rootList'
+import {bindActionCreators} from 'redux'
+import ActionCreactor from '../store/actionCreator'
+import {connect} from 'react-redux'
 const { SubMenu } = Menu;
+let propsUser = JSON.stringify({key:"1",keychild:'1'})
 class CustomNav extends React.Component{
     constructor(){
         super()
         this.state={
-            list:[]
+            list:[],
+            keyItem:[],
+            selectedKeys:['1']
         }
     }
     componentDidMount(){
@@ -16,9 +22,15 @@ class CustomNav extends React.Component{
         //     return this.props.history.push('/login')
         // }
         // let brr = getItem('token').root || []
-        let brr = ['1','2','3']
+        let brr = ['1','2','3','4']
         let list = Rootlist(brr)
         this.setState({list:list})
+    }
+    componentWillReceiveProps(props){
+        if(propsUser !== JSON.stringify(props.UserKeys)){
+            this.setState({keyItem:[props.UserKeys.key],selectedKeys:[props.UserKeys.keychild]})
+            propsUser = JSON.stringify(props.UserKeys)
+        }
     }
     renderMenuItem(item){
         if(item.children){
@@ -56,7 +68,25 @@ class CustomNav extends React.Component{
     }
     render(){
         return(
+<<<<<<< HEAD
         <Menu style={{  }}  theme="dark" defaultSelectedKeys={['2-1']} defaultOpenKeys={['2']} mode="inline">
+=======
+        <Menu style={{  }}  theme="dark" 
+        // defaultSelectedKeys={['1']} defaultOpenKeys={['1']} 
+        mode="inline"
+            openKeys={this.state.keyItem}
+            selectedKeys={this.state.selectedKeys}
+            onOpenChange={(item)=>{
+                console.log(item)
+                this.setState({keyItem:item})
+            }}
+            onSelect={(item)=>{
+                console.log(item.key)
+                this.setState({selectedKeys:[item.key]})
+            }}
+        >
+            {/* this.props.UserKeys.keychild */}
+>>>>>>> 199c3315b87aabe9aca21cebc0da61f9ccfdfbff
             {this.state.list.map((item,index)=>{
               return  this.renderMenuItem(item)
             })}
@@ -64,7 +94,9 @@ class CustomNav extends React.Component{
         )
     }
 }
-export default CustomNav
+export default connect(state=>state,(dispatch)=>{
+    return bindActionCreators(ActionCreactor,dispatch)
+  })(withRouter(CustomNav))
 // class Nav extends React.Component{
 //     render(){
 //         return(
