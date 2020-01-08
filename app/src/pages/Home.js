@@ -5,7 +5,7 @@ import Line from '../../src/component/echarts/line'
 class Home extends React.Component{
   render(){
     return(
-      <div>
+      <div style={{minHeight:555}}>
         <Pie></Pie>
         <Line></Line>
       </div>
