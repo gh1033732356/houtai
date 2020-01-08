@@ -18,7 +18,6 @@ class CustomNav extends React.Component{
         // let brr = getItem('token').root || []
         let brr = ['1','2','3']
         let list = Rootlist(brr)
-        console.log(list)
         this.setState({list:list})
     }
     renderMenuItem(item){

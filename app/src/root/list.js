@@ -13,17 +13,17 @@ const arr = [
             {
                 name:'用户列表',
                 id:'2-1',
-                path:'/user/list',
+                path:'/user/userlist',
             },
             {
                 name:'用户添加',
                 id:'2-2',
-                path:'/user/add'
+                path:'/user/useradd'
             },
             {
-                name:'用户列表',
+                name:'用户修改',
                 id:'2-3',
-                path:'/user/update'
+                path:'/user/userupdate'
             },
         ]
     },
@@ -35,17 +35,17 @@ const arr = [
             {
                 name:'商品列表',
                 id:'3-1',
-                path:'/food/list',
+                path:'/food/foodlist',
             },
             {
-                name:'用户列表',
+                name:'商品添加',
                 id:'3-2',
-                path:'/food/add'
+                path:'/food/foodadd'
             },
             {
-                name:'用户修改',
+                name:'商品修改',
                 id:'3-3',
-                path:'/food/update'
+                path:'/food/foodupdate'
             },
         ] 
     },
