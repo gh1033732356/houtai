@@ -23,13 +23,16 @@ class Admin extends React.Component{
     }
   }
   componentDidMount(){
+    this.props.history.push('/admin/home')
     const hash = window.location.hash
+    console.log(hash)
     let adminArr = '#/admin/'
     // 获取adminArr 长度
     let adminIndex = adminArr.length
     // 截取hash '#/admin/'之后的字符
     const signString = hash.substring(adminIndex)
     // 后的数组
+    console.log(signString)
     const signArrB = signString.split('/')
     this.setState({signArr:signArrB})
   }

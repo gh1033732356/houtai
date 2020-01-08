@@ -1,6 +1,10 @@
 import React,{ Component } from "react";
 import { Table ,Pagination, Button, message,Popconfirm, Spin,Drawer, Input} from 'antd';
 import {GetList,DelGood,GetFoodsByType,GetFoodsByKw} from '../../api/goods'
+import {bindActionCreators} from 'redux'
+import ActionCreactor from '../../store/actionCreator'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import Update from './update'
 import style from './goods.module.less'
 // import data from './data'
@@ -24,14 +28,12 @@ class List extends Component{
           title: 'ID',
           dataIndex: '_id',
           key: '_id',
-          fixed:'left',
           width:220
         },
         {
           title: '名称',
           dataIndex: 'name',
           key: 'name',
-          fixed:'left',
           width:150
         },
         {
@@ -71,7 +73,6 @@ class List extends Component{
           title: '操作',
           key: 'action',
           width:120,
-          fixed:'right',
           // dataIndex:'_id', 
           render:(record)=>{  
             // console.log('record',record);
@@ -106,6 +107,15 @@ class List extends Component{
   }
   componentDidMount(){
     this.getTableData(1,5)
+    const hash = window.location.hash
+    let adminArr = '#/admin/'
+    // 获取adminArr 长度
+    let adminIndex = adminArr.length
+    // 截取hash '#/admin/'之后的字符
+    const signString = hash.substring(adminIndex)
+    // 后的数组
+    const signArrB = signString.split('/')
+    this.props.changeHash(signArrB)
   }
   getTableData(nowPage,pageSize){
     this.setState({spinning:true})  //loading的显示隐藏
@@ -221,4 +231,7 @@ all(){
     )
   }
 }
-export default List
+// export default List
+export default connect(state=>state,(dispatch)=>{
+  return bindActionCreators(ActionCreactor,dispatch)
+})(withRouter(List))
