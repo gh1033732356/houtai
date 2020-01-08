@@ -1,6 +1,10 @@
 import React,{ Component } from "react";
 import {Card , Button, message,Input} from 'antd';
 import {AddFood} from '../../api/goods'
+import {bindActionCreators} from 'redux'
+import ActionCreactor from '../../store/actionCreator'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 import style from './goods.module.less'
 class AddList extends Component{
   constructor(){
@@ -12,6 +16,17 @@ class AddList extends Component{
       foodType:'',
       desc:''
     }
+  }
+  componentDidMount(){
+    const hash = window.location.hash
+    let adminArr = '#/admin/'
+    // 获取adminArr 长度
+    let adminIndex = adminArr.length
+    // 截取hash '#/admin/'之后的字符
+    const signString = hash.substring(adminIndex)
+    // 后的数组
+    const signArrB = signString.split('/')
+    this.props.changeHash(signArrB)
   }
   upload = () =>{
     let file = this.refs.file.files[0]
@@ -92,5 +107,8 @@ class AddList extends Component{
  * 图片上传：
  *   base64
  *   formdata
- */
-export default AddList
+//  */
+// export default AddList
+export default connect(state=>state,(dispatch)=>{
+  return bindActionCreators(ActionCreactor,dispatch)
+})(withRouter(AddList))

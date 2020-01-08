@@ -8,7 +8,7 @@ import ActionCreactor from '../store/actionCreator'
 import CustomNav from '../component/CustomNav'
 import styles from '../less/less.module.less'
 import HeaderNav from '../component/HeaderNav'
-
+import { clear } from '../utils/webStorage';
 const { Header, Content, Footer, Sider } = Layout;
 
 class Admin extends React.Component{
@@ -23,13 +23,16 @@ class Admin extends React.Component{
     }
   }
   componentDidMount(){
+    this.props.history.push('/admin/home')
     const hash = window.location.hash
+    console.log(hash)
     let adminArr = '#/admin/'
     // 获取adminArr 长度
     let adminIndex = adminArr.length
     // 截取hash '#/admin/'之后的字符
     const signString = hash.substring(adminIndex)
     // 后的数组
+    console.log(signString)
     const signArrB = signString.split('/')
     this.setState({signArr:signArrB})
   }
@@ -41,8 +44,9 @@ class Admin extends React.Component{
   handleOk = e => {
     console.log(e);
     // this.props.TokenShowModel(false)
+    clear()
+    this.props.history.push('/login')
     ActionCreactor.TokenShowModel(false)
-    this.props.history.replace('/login')
   };
   // 验证token显示框 是否显示的确定消失按钮
   handleCancel = e => {

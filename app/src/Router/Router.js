@@ -20,7 +20,7 @@ class Router  extends Component{
         {/* 导航 */}
         {/* 路由 */}
         <Switch>
-          <Redirect from='/' to='admin' exact></Redirect>
+          <Redirect from='/' to='admin/home' exact></Redirect>
           <Route path='/login' component={Login}></Route>
           <Route path='/reg' component={Registerr}></Route>
           <Route path='/admin' render={()=>{
@@ -28,17 +28,17 @@ class Router  extends Component{
               <Admin>
                   <Switch>
                     {/* 首页 */}
-                    <Route path='/admin/home' component={Home}></Route>
+                    <Route path='/admin/home' component={Home} exact></Route>
                     {/* 用户相关 */}
                     <Route path='/admin/personalcenter/setup' component={PersonalCenter}></Route>
                     <Route path='/admin/personalcenter/UserCore' component={UserCore}></Route>
                     {/* 商品相关 */}
-                    <Route path='/admin/food/food/list' component={GoodsList}></Route>
-                    <Route path='/admin/food/food/add' component={GoodsAdd}></Route>
+                    <Route path='/admin/food/foodlist' component={GoodsList} ></Route>
+                    <Route path='/admin/food/foodadd' component={GoodsAdd} ></Route>
 
-                    <Route path='/admin/user/userlist' component={UserList}></Route>
-                    <Route path='/admin/user/useradd' component={UserAdd}></Route>
-                    <Route path='/admin/user/userupdate' component={UserUpdate}></Route>
+                    <Route path='/admin/user/userlist' component={UserList} ></Route>
+                    <Route path='/admin/user/useradd' component={UserAdd} ></Route>
+                    <Route path='/admin/user/userupdate' component={UserUpdate} ></Route>
                   </Switch>
               </Admin>
             )

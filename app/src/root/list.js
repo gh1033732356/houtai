@@ -35,12 +35,12 @@ const arr = [
             {
                 name:'商品列表',
                 id:'3-1',
-                path:'/food/food/list',
+                path:'/food/foodlist',
             },
             {
                 name:'商品添加',
                 id:'3-2',
-                path:'/food/food/add'
+                path:'/food/foodadd'
             },
         ] 
     },
