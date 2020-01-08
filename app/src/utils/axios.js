@@ -16,7 +16,6 @@ axios.interceptors.request.use(function (config) {
   });
  
 axios.interceptors.response.use(function (response) {
-    console.log(response.data)
     if(response.data.err){
       const tokens = ['-996','-997','-998','-999']
       if(tokens.indexOf(response.data.err)){

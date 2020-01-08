@@ -1,16 +1,15 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
-import { Layout, Breadcrumb } from 'antd';
-import CustomNav from '../component/CustomNav'
-import SignList from '../root/signList'
 import {bindActionCreators} from 'redux'
-import ActionCreactor from '../store/actionCreator'
-// import store from '../store/store'
+import { Layout, Breadcrumb, Modal } from 'antd';
 import {connect} from 'react-redux'
-import { Modal } from 'antd'
-const { Header, Content, Footer, Sider } = Layout;
-// const { SubMenu } = Menu;
+import SignList from '../root/signList'
+import ActionCreactor from '../store/actionCreator'
+import CustomNav from '../component/CustomNav'
+import styles from '../less/less.module.less'
+import HeaderNav from '../component/HeaderNav'
 
+const { Header, Content, Footer, Sider } = Layout;
 
 class Admin extends React.Component{
   constructor(){
@@ -34,33 +33,39 @@ class Admin extends React.Component{
     const signArrB = signString.split('/')
     this.setState({signArr:signArrB})
   }
+  // 侧边栏的隐藏
   onCollapse = collapsed => {
     this.setState({ collapsed });
   };
+  // 验证token显示框 是否显示的确定按钮
   handleOk = e => {
     console.log(e);
     // this.props.TokenShowModel(false)
     ActionCreactor.TokenShowModel(false)
+    this.props.history.replace('/login')
   };
-
+  // 验证token显示框 是否显示的确定消失按钮
   handleCancel = e => {
     console.log(e);
     ActionCreactor.TokenShowModel(false)
-    // this.props.TokenShowModel(false)
   };
   render(){
     return(
       <Layout style={{ minHeight: '100vh' }}>
         {/* 侧边栏 */}
               <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                <div className="logo" />
+                <div className="logo" >
+                  </div>
                 <CustomNav></CustomNav>
               </Sider>
               
               <Layout>
-                {/* 内容框顶部 */}
-                <Header style={{ background: '#fff', padding: 0 }} >123</Header>
-                {/* 内容部分 */}
+        {/* 内容框顶部 */}
+                <Header className={styles.admin_header}>
+                  <div></div>
+                  <HeaderNav></HeaderNav>
+                </Header>
+        {/* 内容部分 */}
                 <Content style={{ margin: '0 16px' }}>
                   <Breadcrumb style={{ margin: '16px 0' }}>
                     {this.props.HashList.map((item,index)=>{
@@ -74,7 +79,7 @@ class Admin extends React.Component{
                 {/* 尾部 */}
                 <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
               </Layout>
-
+          {/* token 弹出层 */}
           <Modal
             title="温习提示"
             visible={this.props.TokenShow}
