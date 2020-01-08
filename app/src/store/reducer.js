@@ -12,6 +12,5 @@ export default (prevState=state,actions)=>{
      default:
        break;
    }
-   console.log('修改后的数据')
    return newData
 }

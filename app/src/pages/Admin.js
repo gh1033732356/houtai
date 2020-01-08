@@ -1,11 +1,22 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb,message } from 'antd';
 import CustomNav from '../component/CustomNav'
+import styles from '../less/less.module.less'
+import HeaderNav from '../component/HeaderNav'
+import { setItem, getItem } from '../utils/webStorage';
+import {withRouter} from 'react-router-dom'
+
 const { Header, Content, Footer, Sider } = Layout;
 // const { SubMenu } = Menu;
 
-
 class Admin extends React.Component{
+  componentDidMount(){
+    if(!getItem('token')){
+      message.error('请先登录',()=>{
+        this.props.history.replace('/login')
+      })
+    }
+  }
   constructor(){
     super()
     this.state = {
@@ -21,13 +32,17 @@ class Admin extends React.Component{
       <Layout style={{ minHeight: '100vh' }}>
         {/* 侧边栏 */}
               <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                <div className="logo" />
+                <div className="logo" >
+                  </div>
                 <CustomNav></CustomNav>
               </Sider>
               
               <Layout>
                 {/* 内容框顶部 */}
-                <Header style={{ background: '#fff', padding: 0 }} >123</Header>
+                <Header className={styles.admin_header}>
+                  <div></div>
+                  <HeaderNav></HeaderNav>
+                </Header>
                 {/* 内容部分 */}
                 <Content style={{ margin: '0 16px' }}>
                   <Breadcrumb style={{ margin: '16px 0' }}>
@@ -44,4 +59,4 @@ class Admin extends React.Component{
   }
 }
 
-export default Admin;
+export default withRouter(Admin);

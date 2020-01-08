@@ -1,5 +1,4 @@
 import list from './list'
-console.log(list)
 // listItem 为list列标
 // params 为Nav页面要传入的参数
 // rootList 为ruturn 出去的参数
@@ -37,6 +36,5 @@ export const Rootlist = (params)=>{
     fn(listItem,params,rootList)
     return listItem
   })
-  console.log(rootList)
   return rootList
 }
