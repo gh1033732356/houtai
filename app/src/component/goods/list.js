@@ -106,7 +106,7 @@ class List extends Component{
     }
   }
   componentDidMount(){
-    this.getTableData(1,5)
+    this.getTableData(this.state.nowPage,this.state.pageSize)
     const hash = window.location.hash
     let adminArr = '#/admin/'
     // 获取adminArr 长度
@@ -119,6 +119,7 @@ class List extends Component{
   }
   getTableData(nowPage,pageSize){
     this.setState({spinning:true})  //loading的显示隐藏
+    console.log('cai')
     GetList(nowPage,pageSize)  //nowPage--就是当前页码，在接口里面是page
     .then((res)=>{
       console.log(res);
@@ -166,7 +167,7 @@ all(){
     // 1.关闭抽屉
     // 2.更新数据
     this.setState({drawerState:false})
-    this.getTableData(this.nowPage,this.pageSize)
+    // this.getTableData(this.nowPage,this.pageSize)
  }
   render(){
     let {columns,spinning,updateData,data,total,nowPage,pageSize,foodType,kw} = this.state
@@ -214,6 +215,7 @@ all(){
             default:
               break;
           }
+          this.setState({nowPage,pageSize})
         }}/>
         {/* 抽屉  */}
         <Drawer className={style.uDrawer}
@@ -225,7 +227,9 @@ all(){
           visible={this.state.drawerState}
         >
          {/* props传参的方式将要修改的顺序传给组件 */}
-          <Update  closeDrawer={this.closeDrawer} updateData={updateData} className={style.update}></Update>
+          <Update  closeDrawer={this.closeDrawer} updateData={updateData} className={style.update}
+          getTableData={this.getTableData.bind(this)} nowPage={this.state.nowPage} pageSize={this.state.pageSize}
+          ></Update>
         </Drawer>
       </div>
     )

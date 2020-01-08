@@ -56,7 +56,7 @@ class CustomNav extends React.Component{
     }
     render(){
         return(
-        <Menu style={{  }}  theme="dark" defaultSelectedKeys={['1']} mode="inline">
+        <Menu style={{  }}  theme="dark" defaultSelectedKeys={['2-1']} defaultOpenKeys={['2']} mode="inline">
             {this.state.list.map((item,index)=>{
               return  this.renderMenuItem(item)
             })}

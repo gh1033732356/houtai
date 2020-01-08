@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import { Button, message,Input} from 'antd';
 import {UpdateFood} from '../../api/goods'
 import style from './goods.module.less'
+// import {GetList,DelGood,GetFoodsByType,GetFoodsByKw,UpdateFood} from '../../api/goods'
 class foodUpdate extends Component{
   constructor(props){
     console.log('props',props);
@@ -33,6 +34,9 @@ class foodUpdate extends Component{
         message.success('修改成功！',0.2,()=>{
           this.props.closeDrawer() //调用props中的关闭抽屉的方法
         })
+        console.log(this.props)
+        this.props.getTableData(this.props.nowPage,this.props.pageSize)
+        // GetList()
       })
       .catch(()=>{
         message.error('图片格式不正确！')
