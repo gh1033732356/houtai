@@ -8,7 +8,7 @@ import ActionCreactor from '../store/actionCreator'
 import CustomNav from '../component/CustomNav'
 import styles from '../less/less.module.less'
 import HeaderNav from '../component/HeaderNav'
-
+import { clear } from '../utils/webStorage';
 const { Header, Content, Footer, Sider } = Layout;
 
 class Admin extends React.Component{
@@ -44,8 +44,9 @@ class Admin extends React.Component{
   handleOk = e => {
     console.log(e);
     // this.props.TokenShowModel(false)
+    clear()
+    this.props.history.push('/login')
     ActionCreactor.TokenShowModel(false)
-    this.props.history.replace('/login')
   };
   // 验证token显示框 是否显示的确定消失按钮
   handleCancel = e => {
