@@ -4,6 +4,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import store from './store/store'
+import axios from './utils/axios'
+React.Component.prototype.$axios=axios
 ReactDOM.render(
     <Provider store={store}>
         <App />

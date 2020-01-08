@@ -3,11 +3,13 @@ import React ,{Component} from  'react'
 import {HashRouter,Route,Redirect,Switch} from 'react-router-dom'
 import loadable from  '../utils/loadable'
 const Home = loadable(()=> import("../pages/Home") )
+const UserList = loadable(()=> import("../pages/User/UserList") )
 const Admin = loadable(()=> import("../pages/Admin") )
 const Login = loadable(()=> import("../pages/Login") )
 const GoodsList = loadable(()=> import("../component/goods/list") )
 const GoodsAdd = loadable(()=> import("../component/goods/add") )
-// console.log(GoodsList);
+const UserAdd = loadable(()=> import("../pages/User/UserAdd") )
+const UserUpdate = loadable(()=> import("../pages/User/UserUpdate") )
 class Router  extends Component{
   render(){
     return(
@@ -21,6 +23,7 @@ class Router  extends Component{
             return(
               <Admin>
                   <Switch>
+                    {/* 首页 */}
                     <Route path='/admin/home' component={Home}></Route>
                     {/* 用户相关 */}
 
@@ -28,6 +31,9 @@ class Router  extends Component{
                     <Route path='/admin/food/food/list' component={GoodsList}></Route>
                     <Route path='/admin/food/food/add' component={GoodsAdd}></Route>
 
+                    <Route path='/admin/user/userlist' component={UserList}></Route>
+                    <Route path='/admin/user/useradd' component={UserAdd}></Route>
+                    <Route path='/admin/user/userupdate' component={UserUpdate}></Route>
                   </Switch>
               </Admin>
             )

@@ -1,7 +1,10 @@
 import axios from 'axios'
-import {getItem,setItem} from './webStorage'
+import {getItem} from './webStorage'
+
+import ActionCreator from '../store/actionCreator'
+
 axios.interceptors.request.use(function (config) {
-  setItem('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1Nzg0NjMwODIsImV4cCI6MTU3ODQ2NjY4Mn0.TRFXrHxruz0KR4FZbVD-QHvtNaEoyLDYo9eI3jOTsnU')
+ 
     if(getItem('token')){
       if(config.data){
         config.data.token = getItem('token')
@@ -16,6 +19,12 @@ axios.interceptors.request.use(function (config) {
   });
  
 axios.interceptors.response.use(function (response) {
+    if(response.data.err){
+      const tokens = ['-996','-997','-998','-999']
+      if(tokens.indexOf(response.data.err)){
+        ActionCreator.TokenShowModel(true)
+      }
+    }
     return response.data;
   }, function (error) {
     return Promise.reject(error);

@@ -1,5 +1,5 @@
 import React,{ Component } from "react";
-import { Table ,Pagination, Button, message,Popconfirm, Spin,Drawer, Input,Card} from 'antd';
+import { Table ,Pagination, Button, message,Popconfirm, Spin,Drawer, Input} from 'antd';
 import {GetList,DelGood,GetFoodsByType,GetFoodsByKw} from '../../api/goods'
 import Update from './update'
 import style from './goods.module.less'
