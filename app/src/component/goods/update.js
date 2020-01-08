@@ -2,6 +2,7 @@ import React,{ Component } from "react";
 import { Button, message,Input} from 'antd';
 import {UpdateFood} from '../../api/goods'
 import style from './goods.module.less'
+// import {GetList,DelGood,GetFoodsByType,GetFoodsByKw,UpdateFood} from '../../api/goods'
 class foodUpdate extends Component{
   constructor(props){
     console.log('props',props);

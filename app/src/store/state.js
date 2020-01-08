@@ -4,5 +4,6 @@ export default {
   // tokenModal:getItem('token')?false:true
   HashList: [],
   Updateres: [], 
-  TokenShow: false
+  TokenShow: false,
+  UserKeys:{key:"1",keychild:'1'}
 }

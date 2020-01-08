@@ -23,7 +23,7 @@ class Admin extends React.Component{
     }
   }
   componentDidMount(){
-    this.props.history.push('/admin/home')
+    // this.props.history.push('/admin/home')
     const hash = window.location.hash
     console.log(hash)
     let adminArr = '#/admin/'

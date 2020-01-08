@@ -106,7 +106,7 @@ class List extends Component{
     }
   }
   componentDidMount(){
-    this.getTableData(1,5)
+    this.getTableData(this.state.nowPage,this.state.pageSize)
     const hash = window.location.hash
     let adminArr = '#/admin/'
     // 获取adminArr 长度
@@ -119,6 +119,7 @@ class List extends Component{
   }
   getTableData(nowPage,pageSize){
     this.setState({spinning:true})  //loading的显示隐藏
+    console.log('cai')
     GetList(nowPage,pageSize)  //nowPage--就是当前页码，在接口里面是page
     .then((res)=>{
       console.log(res);

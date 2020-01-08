@@ -20,11 +20,11 @@ const arr = [
                 id:'2-2',
                 path:'/user/useradd'
             },
-            {
-                name:'用户修改',
-                id:'2-3',
-                path:'/user/userupdate'
-            },
+            // {
+            //     name:'用户修改',
+            //     id:'2-3',
+            //     path:'/user/userupdate'
+            // },
         ]
     },
     {
@@ -42,18 +42,41 @@ const arr = [
                 id:'3-2',
                 path:'/food/foodadd'
             },
-            // {
-            //     name:'商品修改',
-            //     id:'3-3',
-            //     path:'/food/food/update'
-            // },
         ] 
     },
     {
-        name:'设置',
-        icon:'mail',
+        name:'用户信息',
+        icon:'setting',
         id:'4',
-        path:'/set'
-    },
+        children:[
+            {
+                name:'个人中心',
+                id:'4-1',
+                path:'/personalcenter/UserCore',
+            },
+            {
+                name:'个人设置',
+                id:'4-2',
+                path:'/personalcenter/setup'
+            },
+        ] 
+    }
+    // {
+    //     name:'用户信息',
+    //     icon:'mail',
+    //     id:'4',
+    //     children:[
+    //         {
+    //             name:'个人中心',
+    //             id:'4-1',
+    //             peth:'/personalcenter/UserCore'
+    //         },
+    //         {
+    //             name:'个人设置',
+    //             id:"4-2",
+    //             path:'/personalcenter/setup'
+    //         }
+    //     ]
+    // },
 ]
 export default arr
