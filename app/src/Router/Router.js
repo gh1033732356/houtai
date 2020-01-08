@@ -5,6 +5,7 @@ import loadable from  '../utils/loadable'
 const Home = loadable(()=> import("../pages/Home") )
 const Admin = loadable(()=> import("../pages/Admin") )
 const Login = loadable(()=> import("../pages/Login") )
+const Registerr = loadable(()=> import("../pages/Register") )
 class Router  extends Component{
   render(){
     return(
@@ -14,6 +15,7 @@ class Router  extends Component{
         <Switch>
           <Redirect from='/' to='admin' exact></Redirect>
           <Route path='/login' component={Login}></Route>
+          <Route path='/reg' component={Registerr}></Route>
           <Route path='/admin' render={()=>{
             return(
               <Admin>
