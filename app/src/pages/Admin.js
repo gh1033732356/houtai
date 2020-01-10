@@ -58,11 +58,13 @@ class Admin extends React.Component{
   };
   render(){
     return(
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: '100vh'}}>
         {/* 侧边栏 */}
-              <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                <div className="logo" >
-                  </div>
+              <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} className='styles.sider'>
+              <div className={styles.logo} >
+                <img src='/logo3.png' alt=''/>
+                <h1>CXK 管理系统</h1>
+              </div>
                 <CustomNav></CustomNav>
               </Sider>
               
@@ -85,11 +87,11 @@ class Admin extends React.Component{
                   </div>
                 </Content>
                 {/* 尾部 */}
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center' }}>Design ©2020 Created by Cai Xu Kun</Footer>
               </Layout>
           {/* token 弹出层 */}
           <Modal
-            title="温习提示"
+            title="温馨提示"
             visible={this.props.TokenShow}
             onOk={this.handleOk}
             onCancel={this.handleCancel}
