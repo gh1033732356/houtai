@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
-import { Layout, Breadcrumb, Modal } from 'antd';
+import { Layout, Breadcrumb, Modal, message } from 'antd';
 import {connect} from 'react-redux'
 import SignList from '../root/signList'
 import ActionCreactor from '../store/actionCreator'
@@ -25,7 +25,9 @@ class Admin extends React.Component{
   componentDidMount(){
     // this.props.history.push('/admin/home')
     if(!getItem('token')){
-      this.props.history.push('/login')
+      message.error('登陆过期请登录',()=>{
+        this.props.history.push('/login')
+      })
     }
     const hash = window.location.hash
     console.log(hash)
