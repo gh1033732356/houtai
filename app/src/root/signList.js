@@ -7,6 +7,10 @@ const signList = {
     userupdate: '用户修改',
     foodlist: '商品列表',
     foodadd: '商品添加',
-    foodupdate: '商品修改'
+    foodupdate: '商品修改',
+    editor:'富文本编辑器',
+    personalcenter:'用户信息',
+    UserCore:'个人中心',
+    setup:'个人设置'
 }
 export default signList 

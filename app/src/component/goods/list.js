@@ -125,6 +125,7 @@ class List extends Component{
       console.log(res);
       let {foods,allCount} = res.list
       this.setState({spinning:false,data:foods,total:allCount,nowPage,pageSize})
+     
     })
   }
 //全部

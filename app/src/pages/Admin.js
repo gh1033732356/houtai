@@ -19,7 +19,9 @@ class Admin extends React.Component{
       collapsed: false,
       // 地址栏显示
       signList : SignList,
-      signArr: []
+      signArr: [],
+      Itemkey:[],
+      ItemkeyChild:[]
     }
   }
   componentDidMount(){
@@ -27,17 +29,15 @@ class Admin extends React.Component{
     if(!getItem('token')){
       this.props.history.push('/login')
     }
-    const hash = window.location.hash
-    console.log(hash)
-    let adminArr = '#/admin/'
-    // 获取adminArr 长度
-    let adminIndex = adminArr.length
-    // 截取hash '#/admin/'之后的字符
-    const signString = hash.substring(adminIndex)
-    // 后的数组
-    console.log(signString)
-    const signArrB = signString.split('/')
-    this.setState({signArr:signArrB})
+    // const hash = window.location.hash
+    // let adminArr = '#/admin/'
+    // // 获取adminArr 长度
+    // let adminIndex = adminArr.length
+    // // 截取hash '#/admin/'之后的字符
+    // const signString = hash.substring(adminIndex)
+    // // 后的数组
+    // const signArrB = signString.split('/')  
+    // this.setState({signArr:signArrB})
   }
   // 侧边栏的隐藏
   onCollapse = collapsed => {

@@ -1,13 +1,13 @@
 const arr = [
     {
         name:'首页',
-        icon:'mail',
+        icon:'home',
         id:'1',
         path:'/home'
     },
     {
         name:'用户管理',
-        icon:'setting',
+        icon:'user-add',
         id:'2',
         children:[
             {
@@ -29,7 +29,7 @@ const arr = [
     },
     {
         name:'商品管理',
-        icon:'setting',
+        icon:'shop',
         id:'3',
         children:[
             {
@@ -46,7 +46,7 @@ const arr = [
     },
     {
         name:'用户信息',
-        icon:'setting',
+        icon:'user',
         id:'4',
         children:[
             {
@@ -60,23 +60,12 @@ const arr = [
                 path:'/personalcenter/setup'
             },
         ] 
+    },
+    {
+        name:'富文本编辑器',
+        icon:'book',
+        id:'5',
+        path:'/editor'
     }
-    // {
-    //     name:'用户信息',
-    //     icon:'mail',
-    //     id:'4',
-    //     children:[
-    //         {
-    //             name:'个人中心',
-    //             id:'4-1',
-    //             peth:'/personalcenter/UserCore'
-    //         },
-    //         {
-    //             name:'个人设置',
-    //             id:"4-2",
-    //             path:'/personalcenter/setup'
-    //         }
-    //     ]
-    // },
 ]
 export default arr
