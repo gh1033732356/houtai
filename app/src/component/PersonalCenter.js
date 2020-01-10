@@ -1,10 +1,18 @@
 // 这是个人中心
-import { Menu, Layout, Card } from 'antd';
+import { Menu, Layout } from 'antd';
 import React, { Component } from 'react'
 import types from '../less/PersonalCenter.module.less'
+import {bindActionCreators} from 'redux'
+import ActionCreactor from '../store/actionCreator'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import urlLocationNav from '../utils/urlLocationNav'
 const { Content, Sider } = Layout;
 
 class PersonalCenter extends Component {
+  componentWillMount(){
+    urlLocationNav(this)
+}
   render() {
     return (
       <Layout className={types.box}>
@@ -38,4 +46,6 @@ class PersonalCenter extends Component {
     )
   }
 }
-export default PersonalCenter
+export default connect(state=>state,(dispatch)=>{
+    return bindActionCreators(ActionCreactor,dispatch)
+ })(withRouter(PersonalCenter))

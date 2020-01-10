@@ -5,6 +5,7 @@ import {Rootlist} from '../root/rootList'
 import {bindActionCreators} from 'redux'
 import ActionCreactor from '../store/actionCreator'
 import {connect} from 'react-redux'
+import RootList from '../root/list'
 const { SubMenu } = Menu;
 let propsUser = JSON.stringify({key:"1",keychild:'1'})
 class CustomNav extends React.Component{
@@ -13,20 +14,39 @@ class CustomNav extends React.Component{
         this.state={
             list:[],
             keyItem:[],
-            selectedKeys:['1']
+            selectedKeys:['1'],
         }
     }
     componentDidMount(){
-        // let arr = Rootlist
-        // if(!getItem('token')){
-        //     return this.props.history.push('/login')
-        // }
-        // let brr = getItem('token').root || []
-        let brr = ['1','2','3','4']
+        const hash = window.location.hash
+        let adminArr = '#/admin/'
+        // 获取adminArr 长度
+        let adminIndex = adminArr.length
+        // 截取hash '#/admin/'之后的字符
+        const signString = hash.substring(adminIndex)
+        // 后的数组
+        RootList.map((item)=>{
+          if(item.children){
+            item.children.map((itemChild)=>{
+              if(itemChild.path==='/'+signString){
+                this.setState({keyItem: [itemChild.id[0]],selectedKeys:[itemChild.id]})
+              }
+              return itemChild
+            })
+          }else{
+            if(item.path === "/"+signString){
+              this.setState({keyItem: [item.id],selectedKeys:[item.id]})
+            }
+          }
+          return item
+        })
+
+        let brr = ['1','2','3','4','5']
         let list = Rootlist(brr)
         this.setState({list:list})
     }
     componentWillReceiveProps(props){
+        // 点击个人设置 传redux的值 UserKeys方法获取个人设置的Id
         if(propsUser !== JSON.stringify(props.UserKeys)){
             this.setState({keyItem:[props.UserKeys.key],selectedKeys:[props.UserKeys.keychild]})
             propsUser = JSON.stringify(props.UserKeys)
@@ -69,16 +89,13 @@ class CustomNav extends React.Component{
     render(){
         return(
         <Menu style={{  }}  theme="dark" 
-        // defaultSelectedKeys={['1']} defaultOpenKeys={['1']} 
-        mode="inline"
+            mode="inline"
             openKeys={this.state.keyItem}
             selectedKeys={this.state.selectedKeys}
             onOpenChange={(item)=>{
-                console.log(item)
                 this.setState({keyItem:item})
             }}
             onSelect={(item)=>{
-                console.log(item.key)
                 this.setState({selectedKeys:[item.key]})
             }}
         >

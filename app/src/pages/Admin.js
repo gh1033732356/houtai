@@ -19,7 +19,9 @@ class Admin extends React.Component{
       collapsed: false,
       // 地址栏显示
       signList : SignList,
-      signArr: []
+      signArr: [],
+      Itemkey:[],
+      ItemkeyChild:[]
     }
   }
   componentDidMount(){
@@ -29,17 +31,15 @@ class Admin extends React.Component{
         this.props.history.push('/login')
       })
     }
-    const hash = window.location.hash
-    console.log(hash)
-    let adminArr = '#/admin/'
-    // 获取adminArr 长度
-    let adminIndex = adminArr.length
-    // 截取hash '#/admin/'之后的字符
-    const signString = hash.substring(adminIndex)
-    // 后的数组
-    console.log(signString)
-    const signArrB = signString.split('/')
-    this.setState({signArr:signArrB})
+    // const hash = window.location.hash
+    // let adminArr = '#/admin/'
+    // // 获取adminArr 长度
+    // let adminIndex = adminArr.length
+    // // 截取hash '#/admin/'之后的字符
+    // const signString = hash.substring(adminIndex)
+    // // 后的数组
+    // const signArrB = signString.split('/')  
+    // this.setState({signArr:signArrB})
   }
   // 侧边栏的隐藏
   onCollapse = collapsed => {
@@ -60,11 +60,13 @@ class Admin extends React.Component{
   };
   render(){
     return(
-      <Layout style={{ minHeight: '100vh' }}>
+      <Layout style={{ minHeight: '100vh'}}>
         {/* 侧边栏 */}
-              <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
-                <div className="logo" >
-                  </div>
+              <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse} className='styles.sider'>
+              <div className={styles.logo} >
+                <img src='/logo3.png' alt=''/>
+                <h1>CXK 管理系统</h1>
+              </div>
                 <CustomNav></CustomNav>
               </Sider>
               
@@ -87,11 +89,11 @@ class Admin extends React.Component{
                   </div>
                 </Content>
                 {/* 尾部 */}
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center' }}>Design ©2020 Created by Cai Xu Kun</Footer>
               </Layout>
           {/* token 弹出层 */}
           <Modal
-            title="温习提示"
+            title="温馨提示"
             visible={this.props.TokenShow}
             onOk={this.handleOk}
             onCancel={this.handleCancel}

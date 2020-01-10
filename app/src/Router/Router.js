@@ -6,6 +6,7 @@ const Home = loadable(()=> import("../pages/Home") )
 const UserList = loadable(()=> import("../pages/User/UserList") )
 const Admin = loadable(()=> import("../pages/Admin") )
 const Login = loadable(()=> import("../pages/Login") )
+const Editor = loadable(()=> import("../component/Editor") )
 const Registerr = loadable(()=> import("../pages/Register") )
 const GoodsList = loadable(()=> import("../component/goods/list") )
 const GoodsAdd = loadable(()=> import("../component/goods/add") )
@@ -29,6 +30,7 @@ class Router  extends Component{
                   <Switch>
                     {/* 首页 */}
                     <Route path='/admin/home' component={Home} exact></Route>
+                    <Route path='/admin/editor' component={Editor}></Route>
                     {/* 用户相关 */}
                     <Route path='/admin/personalcenter/setup' component={PersonalCenter}></Route>
                     <Route path='/admin/personalcenter/UserCore' component={UserCore}></Route>

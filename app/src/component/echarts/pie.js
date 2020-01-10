@@ -6,11 +6,11 @@ constructor(){
   super()
   this.state={
       option:{
-        // title: {
-        //     text: '某站点用户访问来源',
-        //     subtext: '纯属虚构',
-        //     left: 'center'
-        // },
+        title: {
+            text: '2019年12月用户访问来源',
+            subtext: '纯属虚构',
+            left: 'right'
+        },
         tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b} : {c} ({d}%)'
@@ -24,7 +24,7 @@ constructor(){
             {
                 name: '访问来源',
                 type: 'pie',
-                // roseType:'radius', //南丁格尔玫瑰图
+                roseType:'radius', //南丁格尔玫瑰图
                 radius: '55%',
                 center: ['50%', '60%'],
                 data: [
@@ -53,7 +53,7 @@ constructor(){
         {value: 310, name: '邮件营销'},
         {value: 234, name: '联盟广告'},
         {value: 135, name: '视频广告'},
-        {value: 1548, name: '搜索引擎'}
+        {value: 300, name: '搜索引擎'}
       ]
       let option = JSON.parse(JSON.stringify(this.state.option))
       option.series[0].data = data  //将上面这个data赋值给原始数据里的option下的data
@@ -63,7 +63,7 @@ constructor(){
   render(){
     let {option} = this.state
     return(
-      <Card title='热卖商品类型-饼状图' style={{width:'48%',float:'left',background:'peachpuff'}} >
+      <Card title='用户访问量-饼状图' style={{width:'48%',float:'left',background:'papayawhip'}} >
         <ReactEcharts option={option}></ReactEcharts>
       </Card>
     )
