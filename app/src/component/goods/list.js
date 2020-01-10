@@ -191,7 +191,7 @@ all(nowPage,pageSize){
     // this.getTableData(this.nowPage,this.pageSize)
  }
   render(){
-    const { attr } = this.props;
+    // const { attr } = this.props;
     let {columns,spinning,updateData,data,total,nowPage,pageSize,foodType,kw} = this.state
     return(
       <div className={style.list}>
