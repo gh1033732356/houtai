@@ -4,15 +4,21 @@ import {GetList,DelGood,GetFoodsByType,GetFoodsByKw} from '../../api/goods'
 import {bindActionCreators} from 'redux'
 import ActionCreactor from '../../store/actionCreator'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+import {withRouter,} from 'react-router-dom'
+// import ReactDOM from 'react-dom';
 import Update from './update'
-import style from './goods.module.less'
+// import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
+import style from '../../less/goods.module.less'
+
 // import data from './data'
 // import columns from './columns'
 class List extends Component{
-  constructor(){
+  constructor(props){
     super()
+    // this.tableRef=React.createRef();
     this.state={
+      // ref:this.props.attr,  // 从父组件获取参数判断该table是否需要导出
       searchId:1,
       drawerState:false, //修改---抽屉的状态值
       updateData:{} , // 要修改的数据
@@ -41,14 +47,12 @@ class List extends Component{
           dataIndex: 'price',
           key: 'price',
           width:100
-      
         },
         {
           title: '类型',
           dataIndex: 'foodType',
           key: 'foodType',
           width:120
-      
         },
         {
           title: '图片',
@@ -67,7 +71,6 @@ class List extends Component{
           dataIndex: 'desc',
           key: 'desc',
           width:230
-      
         },
         {
           title: '操作',
@@ -116,6 +119,12 @@ class List extends Component{
     // 后的数组
     const signArrB = signString.split('/')
     this.props.changeHash(signArrB)
+
+    //导出表格
+   
+      // const table = this.tableRef.current.querySelector('table');
+      // table.setAttribute('id','table-to-xls')     //给该table设置属性
+   
   }
   getTableData(nowPage,pageSize){
     this.setState({spinning:true})  //loading的显示隐藏
@@ -128,39 +137,51 @@ class List extends Component{
     })
   }
 //全部
-all(){
-  this.getTableData()
+all(nowPage,pageSize){
+  this.getTableData(nowPage,pageSize)
 }
  //删除
  del(id){
   DelGood(id)
   .then((res)=>{
-    console.log(res);
-    this.getTableData()
-
+    // console.log(res);
+    message.success('恭喜你~删除成功！',1)
+    this.getTableData(this.state.nowPage,this.state.pageSize)
   })
   console.log('删除id',id);
  }
  // 分类查询
  byType(nowPage,pageSize,foodType){
-  this.setState({spinning:true})
-  GetFoodsByType(nowPage,pageSize,foodType)
-  .then((res)=>{
-    console.log('分类',res);
-    let {foods,allCount} = res.list
-    this.setState({spinning:false,data:foods,total:allCount,searchId:2})
+  if(foodType===''){
+    message.warning('请先输入类型')
+    return false
+  }else{
+     this.setState({spinning:true})
+    GetFoodsByType(nowPage,pageSize,foodType)
+    .then((res)=>{
+      console.log('分类',res);
+      let {foods,allCount} = res.list
+      this.setState({spinning:false,data:foods,total:allCount,nowPage,pageSize,searchId:2})
 
-  })
+    })
+  }
+ 
  }
  // 关键字查询
  byKw(nowPage,pageSize,kw){
-  this.setState({spinning:true})
-  GetFoodsByKw(nowPage,pageSize,kw)
-  .then((res)=>{
-    console.log('关键字',res);
-    let {foods,allCount} = res.list
-    this.setState({spinning:false,data:foods,total:allCount,searchId:3})
-  })
+  
+  if(kw===''){
+    message.warning('请先输入关键字')
+    return false
+  }else{
+    this.setState({spinning:true})
+    GetFoodsByKw(nowPage,pageSize,kw)
+    .then((res)=>{
+      console.log('关键字',res);
+      let {foods,allCount} = res.list
+      this.setState({spinning:false,data:foods,total:allCount,nowPage,pageSize,searchId:3})
+    })
+  }
  }
  //数据
  closeDrawer=()=>{
@@ -170,6 +191,7 @@ all(){
     // this.getTableData(this.nowPage,this.pageSize)
  }
   render(){
+    const { attr } = this.props;
     let {columns,spinning,updateData,data,total,nowPage,pageSize,foodType,kw} = this.state
     return(
       <div className={style.list}>
@@ -182,22 +204,34 @@ all(){
             }}/></p>
             <Button type='primary' icon='search' onClick={()=>{
               this.byType(nowPage,pageSize,foodType)
-            }}></Button>
+            }}>查询</Button>
           关键字查询：<p ><Input type='text' value={kw} placeholder='请输入关键字' onChange={(e)=>{
               let value = e.target.value
               this.setState({kw:value})
             }}/></p>
             <Button type='primary' icon='search' onClick={()=>{
               this.byKw(nowPage,pageSize,kw)
-            }}></Button>
-            <Button type='primary' onClick={()=>{
+            }}>查询</Button>
+            <Button type='primary' icon='ordered-list' onClick={()=>{
               this.all(nowPage,pageSize)
             }}>全部</Button>
+            <Button type='primary' icon='plus' onClick={()=>{
+              this.props.history.push('/admin/food/foodadd')
+            }}>添加</Button>
           </div>
-          <Table  scroll={{y:360,x:200}} columns={columns} dataSource={data} rowKey='_id' pagination={false} bordered></Table>
+          {/* <div>
+          <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="文件名称" 
+                    sheet="工作表名称"
+                    buttonText="导出excel"/> */}
+          <Table  ref={ref=>{this.table=ref}} id='table-to-xls' scroll={{y:300,x:200}} columns={columns} dataSource={data} rowKey='_id' pagination={false} bordered></Table>
+          {/* </div> */}
         </Spin>
         {/* 分页 */}
-        <Pagination  total={total} pageSize={pageSize} onChange={(nowPage,pageSize)=>{
+        <Pagination  className={style.pagination} total={total} pageSize={pageSize} onChange={(nowPage,pageSize)=>{
           // 请求下一页数据
           // 自带参数 nowPage---点击的哪一页  pageSize--总页数，  total---分页上显示的总页数
           // console.log(nowPage,pageSize);

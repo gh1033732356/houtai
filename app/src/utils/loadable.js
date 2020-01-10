@@ -1,9 +1,12 @@
 import React from 'react'
 import Loadable from 'react-loadable'
+import style from '../less/conmon.module.less'
 export default (loader)=>{
     function loading(){
         return(
-            <div>这里是过度组件</div>
+            <div className={style.loadable}>
+                <img src='/load2.gif' href='' alt=''/>
+            </div>
         )
     }
     const LoadableComponent = Loadable({

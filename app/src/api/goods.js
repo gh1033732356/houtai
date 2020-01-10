@@ -1,6 +1,6 @@
 import axios from '../utils/axios'
 // 查询列表数据
-export const GetList = async (page=1,pageSize=10)=>{
+export const GetList = async (page,pageSize)=>{
     let res = await axios.post('/hehe/v1/admin/food/getFoods',{page,pageSize})
     if(res.err !==0){
         throw res
