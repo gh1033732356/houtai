@@ -191,6 +191,7 @@ all(nowPage,pageSize){
       arr1.push(d)
     }
     arr.push(arr1)
+    return item
   })
     //数组转化为excel 数据
     var worksheet = XLSX.utils.aoa_to_sheet(arr);
