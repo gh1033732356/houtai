@@ -1,7 +1,7 @@
 import React ,{Component} from  'react'
 import  {withRouter} from 'react-router-dom'
 import {Dropdown,Menu,Icon,Avatar,Tag} from 'antd'
-import {clear,getItem} from '../utils/webStorage'
+import {getItem} from '../utils/webStorage'
 import {UserLogOut} from '../api/user'
 
 import {bindActionCreators} from 'redux'
@@ -33,8 +33,9 @@ class HeaderNav extends Component{
         UserLogOut(uid)
         .then((data)=>{
           console.log(data)
-          clear()
-          this.props.history.replace('/login') 
+          ActionCreactor.TokenShowModel(true)
+          // clear()
+          // this.props.history.replace('/login') 
         })
         break;
     }

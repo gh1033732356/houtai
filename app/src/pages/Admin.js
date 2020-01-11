@@ -98,7 +98,7 @@ class Admin extends React.Component{
             onOk={this.handleOk}
             onCancel={this.handleCancel}
           >
-            <p>token缺失,请重新登录</p>
+            <p>确定要离开吗</p>
           </Modal>
           {/* 弹出层 */}
         </Layout>
