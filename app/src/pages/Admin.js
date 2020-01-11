@@ -50,8 +50,8 @@ class Admin extends React.Component{
     console.log(e);
     // this.props.TokenShowModel(false)
     clear()
-    this.props.history.push('/login')
     ActionCreactor.TokenShowModel(false)
+    this.props.history.push('/login')
   };
   // 验证token显示框 是否显示的确定消失按钮
   handleCancel = e => {

@@ -29,7 +29,7 @@ class  Register extends Component{
         return(
             <Card className={types.box}>
                 <div className={types.login_form}>
-                <img src='/loginLogo.png'/><br/>
+                <img src='/loginLogo.png' alt='图片'/><br/>
                 <i>Cat Famcoers Club</i>
                 <p>北京市宠爱网络科技有限公司</p>
                 <Form.Item >

@@ -30,10 +30,23 @@ class UserAdd extends React.Component{
         // 判断hash值 是否在修改阶段打开
         if(window.location.hash === '#/admin/user/userlist'){
             let userID = this.props.userAdds
+            console.log(userID.rootLevel)
+            let rootLevels = []
+            switch (userID.rootLevel) {
+                case 0:
+                    rootLevels = ['0']
+                    break;
+                case 9:
+                    rootLevels = ['9']
+                    break;
+
+                default:
+                    break;
+            }
             this.props.form.setFieldsValue({
                 'userName': userID.userName ,
                 'passWord': userID.passWord ,
-                'userRoot': ['9'] 
+                'userRoot': rootLevels
             });
             this.setState({show:false})
         }

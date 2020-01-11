@@ -16,6 +16,10 @@ export default (prevState=state,actions)=>{
      case types.USER_SZ:
         newData.UserKeys=params
        break;
+     case types.ROOT_LIST:
+       console.log('ROOT_LIST',params)
+        newData.Rootlist=params
+       break;
      default:
        break;
    }

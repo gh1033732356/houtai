@@ -18,8 +18,9 @@ export const FoodList = async (userName='roots',passWord='123')=>{
     return res
 }
 // 2：添加接口
-export const FoodAdd = async (userName,passWord)=>{
-    let res = await axios.post('/hehe/v1/admin/root/add',{userName,passWord})
+export const FoodAdd = async (userName,passWord,rootLevel)=>{
+    console.log(rootLevel)
+    let res = await axios.post('/hehe/v1/admin/root/add',{userName,passWord,rootLevel})
     if(res.err !== 0){
         throw res
     }

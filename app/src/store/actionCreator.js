@@ -22,6 +22,13 @@ export default {
     }
     return action  // 改为return
   },
+  RootList(params){
+    const action = {
+        type : types.ROOT_LIST,
+        params : params
+    }
+    return action  // 改为return
+  },
   TokenShowModel(params){
     const action = {
         type : types.TOKEN_SHOW,
