@@ -24,7 +24,7 @@ constructor(){
             {
                 name: '访问来源',
                 type: 'pie',
-                roseType:'radius', //南丁格尔玫瑰图
+                // roseType:'radius', //南丁格尔玫瑰图
                 radius: '55%',
                 center: ['50%', '60%'],
                 data: [
