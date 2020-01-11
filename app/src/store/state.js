@@ -5,5 +5,6 @@ export default {
   HashList: [],
   Updateres: [], 
   TokenShow: false,
-  UserKeys:{key:"1",keychild:'1'}
+  UserKeys:{key:"1",keychild:'1'},
+  Rootlist:[]
 }

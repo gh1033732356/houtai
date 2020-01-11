@@ -27,7 +27,14 @@ class UserList extends React.Component{
                   title: '密码',
                   dataIndex: 'passWord',
                   align:'center'
-
+                },
+                {
+                  title: '权限',
+                  dataIndex: 'rootLevel',
+                  align:'center',
+                  render:(res) => (
+                  <span>{res===0?'管理员':"超级管理员"}</span>
+                  )
                 },
                 {
                     title: '操作',
@@ -50,6 +57,7 @@ class UserList extends React.Component{
     }
     showModal=(res)=>{
         // 修改全局redux， 由高阶组件Hoc传递过来
+        console.log(res)
         this.props.updateFn(res)
         this.setState({
           visible: true,
@@ -120,6 +128,7 @@ class UserList extends React.Component{
         // axios获取列表页
         FoodList()
           .then((data)=>{
+            console.log(data)
               this.setState({formdata:data.list,loadshow:false})
           })
           .catch((err)=>{

@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux'
 import ActionCreactor from '../store/actionCreator'
 import {connect} from 'react-redux'
 import RootList from '../root/list'
+// import { getItem } from '../utils/webStorage';
 const { SubMenu } = Menu;
 let propsUser = JSON.stringify({key:"1",keychild:'1'})
 class CustomNav extends React.Component{
@@ -42,6 +43,9 @@ class CustomNav extends React.Component{
         })
 
         let brr = ['1','2','3','4','5']
+        // console.log()
+        // let brr = getItem('roots').rootList
+        // 
         let list = Rootlist(brr)
         this.setState({list:list})
     }
@@ -110,38 +114,3 @@ class CustomNav extends React.Component{
 export default connect(state=>state,(dispatch)=>{
     return bindActionCreators(ActionCreactor,dispatch)
   })(withRouter(CustomNav))
-// class Nav extends React.Component{
-//     render(){
-//         return(
-//             <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-//             <SubMenu
-//               key="sub1"
-//               title={
-//                 <span>
-//                   <Icon type="user" />
-//                   <span>User</span>
-//                 </span>
-//               }
-//             >
-//               <Menu.Item key="3">Tom</Menu.Item>
-//               <Menu.Item key="4">Bill</Menu.Item>
-//               <Menu.Item key="5">Alex</Menu.Item>
-//             </SubMenu>
-//             <SubMenu
-//               key="sub2"
-//               title={
-//                 <span>
-//                   <Icon type="team" />
-//                   <span>Team</span>
-//                 </span>
-//               }
-//             >
-//               <Menu.Item key="6">Team 1</Menu.Item>
-//               <Menu.Item key="8">Team 2</Menu.Item>
-//             </SubMenu>
-//           </Menu> 
-//         )
-//     }
-// }
-
-// export default Nav

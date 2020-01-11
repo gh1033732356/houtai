@@ -4,12 +4,16 @@ import types from '../less/Login.module.less'
 import {UserLogin} from '../api/user'
 import {withRouter,Link} from 'react-router-dom'
 import { setItem, getItem } from '../utils/webStorage';
+import {bindActionCreators} from 'redux'
+import ActionCreactor from '../store/actionCreator'
+import {connect} from 'react-redux'
 // import Register from './Register'
 class Login extends Component {
   componentDidMount(){
     if(getItem('token')){
       this.props.history.replace('/admin/home')
     }
+    console.log(this.props.RootList())
   }
   login=()=>{
     let {validateFields	}=this.props.form
@@ -43,7 +47,7 @@ class Login extends Component {
     return (
       <Card className={types.box}>
       <div className={types.login_form}>
-        <img src='/loginLogo.png'/><br/>
+        <img src='/loginLogo.png'  alt='图片'/><br/>
         <i>Cat Famcoers Club</i>
         <p>北京市宠爱网络科技有限公司</p>
         <Form.Item>
@@ -86,4 +90,7 @@ class Login extends Component {
     );
   }
 }
-export default Form.create({})(withRouter(Login));
+const LoginForm =  Form.create({})(withRouter(Login));
+export default connect(state=>state,(dispatch)=>{
+  return bindActionCreators(ActionCreactor,dispatch)
+})(withRouter(LoginForm))
